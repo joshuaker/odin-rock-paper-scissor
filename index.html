@@ -10,7 +10,7 @@
     <script>
         // get random index, get random choice, return choice
         function getComputerChoice() {
-            const choices = ["rock", "paper", "scissors"];
+            const choices = ["Rock", "Paper", "Scissors"];
             const randomIndex = Math.floor(Math.random() * choices.length);
             let item = choices[randomIndex];
 
@@ -22,33 +22,36 @@
         // each selection facing three possible computerselections
         // 
         function playRound(playerSelection, computerSelection) {
-            if (playerSelection === "rock") {
-                if (computerSelection === "rock") {
-                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
-                } else if (computerSelection === "paper") {
-                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
-                } else if (computerSelection === "scissors") {
-                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
+            const playerSelectionLowerCase = playerSelection.toLowerCase();
+            const playerSelectionCapitalized = playerSelectionLowerCase.charAt(0).toUpperCase() + playerSelectionLowerCase.slice(1)
+
+            if (playerSelectionCapitalized === "Rock") {
+                if (computerSelection === "Rock") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Paper") {
+                    return `You Lose! ${computerSelection} beats ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Scissors") {
+                    return `You Win! ${computerSelection} loses to ${playerSelectionCapitalized}`;
                 }
-            } else if (playerSelection === "paper") {
-                if (computerSelection === "rock") {
-                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
-                } else if (computerSelection === "paper") {
-                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
-                } else if (computerSelection === "scissors") {
-                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+            } else if (playerSelectionCapitalized === "Paper") {
+                if (computerSelection === "Rock") {
+                    return `You Win! ${computerSelection} loses to ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Paper") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Scissors") {
+                    return `You Lose! ${computerSelection} beats ${playerSelectionCapitalized}`;
                 }
-            } else if (playerSelection === "scissors") {
-                if (computerSelection === "rock") {
-                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
-                } else if (computerSelection === "paper") {
-                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
-                } else if (computerSelection === "scissors") {
-                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
+            } else if (playerSelectionCapitalized === "Scissors") {
+                if (computerSelection === "Rock") {
+                    return `You Lose! ${computerSelection} beats ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Paper") {
+                    return `You Win! ${computerSelection} loses to ${playerSelectionCapitalized}`;
+                } else if (computerSelection === "Scissors") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelectionCapitalized}`;
                 }
             }
         }
-        console.log(playRound("rock","scissors"))
+        console.log(playRound("sCisSorS","Scissors"))
     </script>
 </body>
 </html>
