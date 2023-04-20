@@ -22,9 +22,33 @@
         // each selection facing three possible computerselections
         // 
         function playRound(playerSelection, computerSelection) {
-
+            if (playerSelection === "rock") {
+                if (computerSelection === "rock") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
+                } else if (computerSelection === "paper") {
+                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                } else if (computerSelection === "scissors") {
+                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
+                }
+            } else if (playerSelection === "paper") {
+                if (computerSelection === "rock") {
+                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
+                } else if (computerSelection === "paper") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
+                } else if (computerSelection === "scissors") {
+                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                }
+            } else if (playerSelection === "scissors") {
+                if (computerSelection === "rock") {
+                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                } else if (computerSelection === "paper") {
+                    return `You Win! ${computerSelection} loses to ${playerSelection}`;
+                } else if (computerSelection === "scissors") {
+                    return `You Drew! ${computerSelection} ties with ${playerSelection}`;
+                }
+            }
         }
-        
+        console.log(playRound("rock","scissors"))
     </script>
 </body>
 </html>
