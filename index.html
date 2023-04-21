@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Josh's TOP Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+    <div class="bod">
+        <div class="playerChoiceContainer">
+            <button class = "player-choices" id="Rock">Rock</button>
+            <button class = "player-choices" id="Paper">Paper</button>
+            <button class = "player-choices" id="Scissors">Scissors</button>
+        </div>
+        <div class="runningResultsDisplay">
+            <div id="computerWins">Computer Wins: 0</div>
+            <div id="playerWins">Player Wins: 0</div>
+            <div id="drawNum">Number of Draws: 0</div>
+        </div>
+    </div>
+    <div id="results">
+
+    </div>
     <script>
-        // randomized choice
+
+        // get random index, get random choice, return choice
         function getComputerChoice() {
             const choices = ["Rock", "Paper", "Scissors"];
             const randomIndex = Math.floor(Math.random() * choices.length);
@@ -16,7 +34,7 @@
 
             return item;
         }
-        // 9 possible return messages; variations of You Lose! You Win! You Drew!
+        // 9 possible return messages; variations of You Lose! You Win! You Drew!        
         function playRound(playerSelection, computerSelection) {
             const playerSelectionLowerCase = playerSelection.toLowerCase();
             const playerSelectionCapitalized = playerSelectionLowerCase.charAt(0).toUpperCase() + playerSelectionLowerCase.slice(1)
@@ -47,8 +65,6 @@
                 }
             }
         }
-
-        // call n rounds of playRound
         function game(rounds) {
             const totalRounds = rounds
             let computerWins = 0;
@@ -76,8 +92,51 @@
                 console.log(`You drew! Out of ${totalRounds} rounds, the computer won ${computerWins} times, while you won ${playerWins} times!`)
             }
         }
+    
+    const results = document.querySelector("#results");
+    const playerChoices = document.querySelectorAll(".player-choices");
+    let roundCount = 0;
+    let computerWins = 0;
+    let playerWins = 0;
+    let drawWins = 0;
+    const computerWinsDisplay = document.querySelector("#computerWins");
+    const playerWinsDisplay = document.querySelector("#playerWins");
+    const drawDisplay = document.querySelector("#drawNum")
+
+    playerChoices.forEach(choice => {  
+    choice.addEventListener("click", () => {
+        if (roundCount >= 5) {
+            return;
+        }
+        const computerChoice = getComputerChoice();
+        const playerSelection = choice.id;
+        roundResult = playRound(playerSelection, computerChoice);
+        roundCount++;
+        results.append(`Round ${roundCount}: ${roundResult}\n`);
+
+        if (roundResult.includes("Win")) {
+                    playerWins++;
+                    playerWinsDisplay.textContent= `Player Wins: ${playerWins}`
+                } else if (roundResult.includes("Lose")) {
+                    computerWins++;
+                    computerWinsDisplay.textContent= `Computer Wins: ${computerWins}`
+                } else {
+                    drawWins++;
+                    drawDisplay.textContent= `Number of Draws: ${drawWins}`
+
+                }
+        if (roundCount >= 5) {
+            if (computerWins > playerWins) {
+                results.append(`You lose! The computer won ${computerWins} times, while you won ${playerWins} times!`)
+            } else if (computerWins < playerWins) {
+                results.append(`You win! The computer won ${computerWins} times, while you won ${playerWins} times!`)
+            } else {
+                results.append(`You drew! The computer won ${computerWins} times, while you won ${playerWins} times!`)
+            }
+        }
         
-        game(5)
+    })
+    });
     </script>
 </body>
 </html>
