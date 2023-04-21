@@ -8,7 +8,7 @@
 </head>
 <body>
     <script>
-        // get random index, get random choice, return choice
+        // randomized choice
         function getComputerChoice() {
             const choices = ["Rock", "Paper", "Scissors"];
             const randomIndex = Math.floor(Math.random() * choices.length);
@@ -17,10 +17,6 @@
             return item;
         }
         // 9 possible return messages; variations of You Lose! You Win! You Drew!
-        // nested if statements
-        // 3 possible players selections
-        // each selection facing three possible computerselections
-        // 
         function playRound(playerSelection, computerSelection) {
             const playerSelectionLowerCase = playerSelection.toLowerCase();
             const playerSelectionCapitalized = playerSelectionLowerCase.charAt(0).toUpperCase() + playerSelectionLowerCase.slice(1)
@@ -52,7 +48,7 @@
             }
         }
 
-        // call 5 rounds of playRound
+        // call n rounds of playRound
         function game(rounds) {
             const totalRounds = rounds
             let computerWins = 0;
