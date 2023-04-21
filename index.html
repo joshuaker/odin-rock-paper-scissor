@@ -17,7 +17,7 @@
         <div id="playerWins">Player Wins: 0</div>
         <div id="drawNum">Number of Draws: 0</div>
     </div>
-    
+
     <div id="results">
 
     </div>
@@ -95,19 +95,32 @@
     let roundCount = 0;
     let computerWins = 0;
     let playerWins = 0;
+    let drawWins = 0;
+    const computerWinsDisplay = document.querySelector("#computerWins");
+    const playerWinsDisplay = document.querySelector("#playerWins");
+    const drawDisplay = document.querySelector("#drawNum")
 
     playerChoices.forEach(choice => {  
     choice.addEventListener("click", () => {
+        if (roundCount >= 5) {
+            return;
+        }
         const computerChoice = getComputerChoice();
         const playerSelection = choice.id;
         roundResult = playRound(playerSelection, computerChoice);
         roundCount++;
-        results.append(`Round ${roundCount}: ${roundResult}`);
+        results.append(`Round ${roundCount}: ${roundResult}\n`);
 
         if (roundResult.includes("Win")) {
                     playerWins++;
+                    playerWinsDisplay.textContent= `Player Wins: ${playerWins}`
                 } else if (roundResult.includes("Lose")) {
                     computerWins++;
+                    computerWinsDisplay.textContent= `Computer Wins: ${computerWins}`
+                } else {
+                    drawWins++;
+                    drawDisplay.textContent= `Number of Draws: ${drawWins}`
+
                 }
         if (roundCount >= 5) {
             if (computerWins > playerWins) {
