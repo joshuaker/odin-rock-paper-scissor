@@ -22,9 +22,7 @@
             <div id="drawNum">Number of Draws: 0</div>
         </div>
     </div>
-    <div id="results">
-
-    </div>
+    <div id="results"></div>
     <script>
 
         // get random index, get random choice, return choice
@@ -113,7 +111,8 @@
         const playerSelection = choice.id;
         roundResult = playRound(playerSelection, computerChoice);
         roundCount++;
-        results.append(`Round ${roundCount}: ${roundResult}\n`);
+        let p = document.createElement("p");
+        results.append(`Round ${roundCount}: ${roundResult}`, p);
 
         if (roundResult.includes("Win")) {
                     playerWins++;

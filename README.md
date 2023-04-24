@@ -6,3 +6,4 @@ what I learned/practiced:
 - flex box formatting/styling
 - simple eventlistening javascript
 - tracking helper variables
+- vw and vh in css
